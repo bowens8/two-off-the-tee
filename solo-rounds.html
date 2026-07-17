@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Two Off the Tee — Solo Rounds</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brand">Two Off the Tee <span class="brand-mark">HDCP</span></a>
+    <nav class="site-nav">
+      <a href="index.html">Leaderboard</a>
+      <a href="round-entry.html">Log a Round</a>
+      <a href="solo-rounds.html">Solo Rounds</a>
+    </nav>
+    <div class="auth-area" id="auth-area"></div>
+  </div>
+</header>
+
+<main>
+
+  <div data-requires-signed-out class="login-gate card">
+    <div class="glyph">⛳</div>
+    <h1>Sign in to see solo rounds</h1>
+  </div>
+
+  <div data-requires-auth style="display:none;">
+    <div class="page-eyebrow">Everywhere else you've played</div>
+    <h1 class="page-title">Solo Rounds</h1>
+    <p class="page-sub">Log rounds you each play on your own — anywhere. Click the map to drop a pin, or search for the course.</p>
+
+    <div id="solo-map"></div>
+
+    <div class="card">
+      <div class="section-head"><h2>Log a solo round</h2></div>
+      <div class="field-row">
+        <div>
+          <label for="s-date">Date</label>
+          <input type="date" id="s-date">
+        </div>
+        <div>
+          <label for="s-score">Score (total, gross)</label>
+          <input type="number" id="s-score" min="18" max="200" placeholder="e.g. 88">
+        </div>
+      </div>
+      <div class="field-row">
+        <div>
+          <label for="s-course">Course name</label>
+          <input type="text" id="s-course" placeholder="e.g. Pebble Beach Golf Links">
+        </div>
+        <div>
+          <label for="s-search">Find it on the map</label>
+          <div style="display:flex;gap:8px;">
+            <input type="text" id="s-search" placeholder="Search a place…">
+            <button class="btn btn-outline btn-sm" id="s-search-btn" style="white-space:nowrap;">Search</button>
+          </div>
+        </div>
+      </div>
+      <label for="s-notes">Notes</label>
+      <textarea id="s-notes" rows="2" placeholder="Optional — how'd it go?" style="margin-bottom:16px;"></textarea>
+      <p class="loading-line" id="s-pin-status">No location pinned yet — click the map above to drop a pin.</p>
+      <button class="btn btn-primary" id="s-save-btn" style="margin-top:12px;">Save solo round</button>
+    </div>
+
+    <div class="section-head" style="margin-top:28px;">
+      <h2>History</h2>
+    </div>
+    <div class="card" id="solo-history-slot"><p class="loading-line">Loading…</p></div>
+  </div>
+
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script type="module" src="js/firebase-config.js"></script>
+<script type="module" src="js/app.js"></script>
+<script type="module" src="js/solo-rounds.js"></script>
+</body>
+</html>
